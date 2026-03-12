@@ -4,12 +4,13 @@ import { query, update } from 'mu';
 import { Request, Response } from 'express';
 
 import { HttpError } from '../util/http-error';
-import { validateQuery } from '../util/validate';
+import { validateHeaders, validateQuery } from '../util/validate';
 import { log } from '../util/logger';
 
 export const sparqlRouter = Router();
 
 sparqlRouter.post('/', async (req: Request, res: Response) => {
+  validateHeaders(req);
   const queryString = req.body.query ?? req.body.update;
 
   if (!queryString) {
