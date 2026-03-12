@@ -16,11 +16,11 @@ sparqlRouter.post('/', async (req: Request, res: Response) => {
       'No query value was found.',
       400,
       `The endpoint received a body without the property 'query' or 'body'.`,
-      req.body
+      req.body,
     );
   }
 
-  const queryValidationResult = validateQuery(queryString)
+  const queryValidationResult = validateQuery(queryString);
   if (!queryValidationResult.isValid) {
     throw new HttpError(
       queryValidationResult.message,
@@ -37,9 +37,7 @@ sparqlRouter.post('/', async (req: Request, res: Response) => {
       'Something went wrong while executing the query.',
       500,
       `For more details check the logs.`,
-      error
+      error,
     );
   }
 });
-
-

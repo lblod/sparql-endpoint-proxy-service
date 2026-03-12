@@ -7,14 +7,13 @@ export function validateQuery(queryString: string) {
     const result = parser.parse(queryString);
     return {
       isValid: true,
-      queryType: result.type
+      queryType: result.type,
     };
-  } catch (err: any) {
+  } catch (error: any) {
     return {
       isValid: false,
-      message: "Invalid SPARQL Syntax",
-      description: err.message,
-      location: err.location
+      message: 'Invalid SPARQL Syntax',
+      description: error.message,
     };
   }
 }

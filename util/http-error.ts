@@ -1,4 +1,3 @@
-
 export class HttpError extends Error {
   constructor(
     message: string,
@@ -16,7 +15,12 @@ export class HttpError extends Error {
     }
   }
 
-  static caughtErrorJsonResponse(error: { message: string; object: any; status: any; description: any; }) {
+  static caughtErrorJsonResponse(error: {
+    message: string;
+    object: object;
+    status: string | number;
+    description: string;
+  }) {
     const title = error.message ?? 'An unexpected error occurred.';
     const detail = error.object;
     return {
