@@ -1,4 +1,4 @@
-# sparql-endpoint-service
+# sparql-endpoint-proxy-service
 
 A middleware service designed to proxy SPARQL queries to the database via the [_mu-javascript (v1.9.0)_](https://github.com/mu-semtech/mu-javascript-template) package.
 
