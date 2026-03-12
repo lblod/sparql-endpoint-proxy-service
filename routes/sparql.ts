@@ -5,13 +5,14 @@ import { Request, Response } from 'express';
 
 import { HttpError } from '../util/http-error';
 import { validateQuery } from '../util/validate';
+import { log } from '../util/logger';
 
 export const sparqlRouter = Router();
 
 sparqlRouter.post('/', async (req: Request, res: Response) => {
   const queryString = req.body.query ?? req.body.update;
-
   if (!queryString) {
+    log.error('No query string found in the request body.', req.body);
     throw new HttpError(
       'No query value was found.',
       400,
@@ -22,6 +23,7 @@ sparqlRouter.post('/', async (req: Request, res: Response) => {
 
   const queryValidationResult = validateQuery(queryString);
   if (!queryValidationResult.isValid) {
+    log.error('Query did not pass the validation', { queryValidationResult, query: queryString });
     throw new HttpError(
       queryValidationResult.message,
       422,
