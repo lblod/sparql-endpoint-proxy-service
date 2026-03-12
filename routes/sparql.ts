@@ -1,6 +1,6 @@
 import Router from 'express-promise-router';
 
-import { query } from 'mu';
+import { query, update } from 'mu';
 import { Request, Response } from 'express';
 
 import { HttpError } from '../util/http-error';
@@ -11,6 +11,7 @@ export const sparqlRouter = Router();
 
 sparqlRouter.post('/', async (req: Request, res: Response) => {
   const queryString = req.body.query ?? req.body.update;
+
   if (!queryString) {
     log.error('No query string found in the request body.', req.body);
     throw new HttpError(
@@ -30,9 +31,13 @@ sparqlRouter.post('/', async (req: Request, res: Response) => {
       queryValidationResult.description,
     );
   }
+  let queryMethod = query;
+  if (req.body.update) {
+    queryMethod = update;
+  }
 
   try {
-    const result = await query(queryString);
+    const result = await queryMethod(queryString);
     res.status(200).send(result);
   } catch (error) {
     throw new HttpError(
