@@ -4,6 +4,9 @@ A middleware service designed to proxy SPARQL queries to the database via the [_
 
 This service ensures that all incoming queries are validated and passing by the project's central authentication layer. (_[sparql-parser](https://github.com/mu-semtech/sparql-parser)_)
 
+[!NOTE]
+This is not the same as [sparql-authorization-wrapper-service](https://github.com/lblod/sparql-authorization-wrapper-service).
+
 ## Features
 
 | Feature          | Description                                                                                                                                              |
