@@ -3,8 +3,8 @@ import { app } from 'mu';
 import express, { Request, ErrorRequestHandler } from 'express';
 import bodyParser from 'body-parser';
 
-import { sparqlRouter } from './routes/sparql';
-import { HttpError } from './util/http-error';
+import { sparqlRouter } from './sparql';
+import { HttpError } from './http-error';
 
 app.use(
   bodyParser.json({
@@ -17,7 +17,7 @@ app.use(
 
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', async (_req, res) => {
+app.get('/health', async (_req, res) => {
   res.send({ status: 'ok' });
 });
 

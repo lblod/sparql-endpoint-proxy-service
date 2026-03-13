@@ -3,8 +3,8 @@ import Router from 'express-promise-router';
 import { query, update } from 'mu';
 import { Request, Response } from 'express';
 
-import { HttpError } from '../util/http-error';
-import { validateHeaders, validateQuery } from '../util/validate';
+import { HttpError } from './http-error';
+import { validateHeaders, validateQuery } from './validate';
 
 export const sparqlRouter = Router();
 
