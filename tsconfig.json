@@ -1,7 +1,0 @@
-{
-  "compilerOptions": {
-    "types": ["mu-types"],
-    "lib": ["ES2015"]
-  },
-  "exclude": ["node_modules"]
-}

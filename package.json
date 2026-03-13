@@ -2,32 +2,11 @@
   "name": "sparql-endpoint-service",
   "version": "0.0.0",
   "type": "module",
-  "description": "Service to handle sparql endpoint queries under an auth scope by using the mu package.",
+  "description": "Service to proxy sparql queries for use of auth scopes",
   "main": "app.js",
-  "author": "redpencil.io",
   "license": "MIT",
-  "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "@types/node": "^20.19.37",
-    "eslint": "^10.0.3",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.5",
-    "mu-types": "git+https://github.com/rahien/mu-types.git",
-    "prettier": "^3.8.1",
-    "typescript-eslint": "^8.57.0"
-  },
-  "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "format:check": "prettier --check \"src/**/*.ts\"",
-    "release": "release-it"
-  },
   "dependencies": {
     "@traqula/parser-sparql-1-1": "^1.0.3",
-    "body-parser": "^1.19.0",
-    "express-promise-router": "^4.1.1",
-    "release-it": "^15.4.1",
-    "typescript": "^4.6.2"
+    "express-promise-router": "^4.1.1"
   }
 }
