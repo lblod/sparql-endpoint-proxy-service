@@ -2,14 +2,13 @@ import Router from 'express-promise-router';
 
 import { query, update } from 'mu';
 import { Request, Response } from 'express';
+import { Parser } from '@traqula/parser-sparql-1-1';
 
 import { HttpError } from './http-error';
-import { validateHeaders, validateQuery } from './validate';
 
 export const sparqlRouter = Router();
 
 sparqlRouter.post('/', async (req: Request, res: Response) => {
-  validateHeaders(req);
   const queryString = req.body.query ?? req.body.update;
 
   if (!queryString) {
@@ -51,3 +50,21 @@ sparqlRouter.post('/', async (req: Request, res: Response) => {
     );
   }
 });
+
+function validateQuery(queryString: string) {
+  const parser = new Parser();
+
+  try {
+    const result = parser.parse(queryString);
+    return {
+      isValid: true,
+      queryType: result.type,
+    };
+  } catch (error: any) {
+    return {
+      isValid: false,
+      message: 'Invalid SPARQL Syntax',
+      description: error.message,
+    };
+  }
+}
