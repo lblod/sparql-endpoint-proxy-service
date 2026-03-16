@@ -1,12 +1,11 @@
 {
-  "name": "sparql-endpoint-service",
+  "name": "sparql-endpoint-proxy-service",
   "version": "0.0.0",
   "type": "module",
-  "description": "Service to proxy sparql queries for use of auth scopes",
+  "description": "Service to proxy sparql queries",
   "main": "app.js",
   "license": "MIT",
   "dependencies": {
-    "@traqula/parser-sparql-1-1": "^1.0.3",
     "express-promise-router": "^4.1.1"
   }
 }

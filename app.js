@@ -1,9 +1,7 @@
-import { app } from 'mu'
+import { app, query, update } from 'mu'
 
 import express from 'express'
 import bodyParser from 'body-parser'
-
-import { sparqlRouter } from './sparql'
 
 app.use(
   bodyParser.json({
@@ -16,7 +14,31 @@ app.use(
 
 app.use(express.urlencoded({ extended: true }))
 
-app.use('/', sparqlRouter)
+app.post('/', async (req, res) => {
+  const queryString = req.body.query ?? req.body.update
+  if (!queryString) {
+    const error = new Error('No query value was found.')
+    error.status = 400
+    error.description = `The endpoint received a body without the property 'query' or 'body'.`
+    console.log('[ERROR] ' + error.description)
+    console.log(JSON.stringify(req.body))
+
+    throw error
+  }
+
+  let queryMethod = query
+  if (req.body.update) {
+    queryMethod = update
+  }
+
+  try {
+    const result = await queryMethod(queryString)
+    res.status(200).send(result)
+  } catch (error) {
+    console.log('[ERROR] ' + error)
+    throw new Error('Something went wrong while executing the query.')
+  }
+})
 
 const errorHandler = function (err, _req, res, _next) {
   res.status(err.status)

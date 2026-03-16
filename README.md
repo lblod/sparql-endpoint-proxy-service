@@ -11,7 +11,6 @@ This is not the same as [sparql-authorization-wrapper-service](https://github.co
 
 | Feature          | Description                                                                                                                                              |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Query Validation | Every incoming query is validated. If the syntax is incorrect, the service returns detailed feedback in the response.                                    |
 | Secure Proxying  | Validated queries are executed using the query or update functions from the _mu package_.                                                                |
 | Scoped Access    | This architecture allows you to assign a specific auth scope to the service, effectively restricting its data access based on defined security policies. |
 
